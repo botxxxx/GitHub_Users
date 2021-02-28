@@ -18,19 +18,19 @@ package com.example.test.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.test.RecyclerFragment
+import com.example.test.RecyclerListFragment
 
-const val MY_GARDEN_PAGE_INDEX = 0
-const val PLANT_LIST_PAGE_INDEX = 1
+const val PAGE_0 = 0
+const val PAGE_1 = 1
 
-class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class MainViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     /**
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
-        MY_GARDEN_PAGE_INDEX to { RecyclerFragment() }
-//        PLANT_LIST_PAGE_INDEX to { PlantListFragment() }
+        PAGE_0 to { RecyclerListFragment() }
+//        PAGE_1 to { PlantListFragment() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size

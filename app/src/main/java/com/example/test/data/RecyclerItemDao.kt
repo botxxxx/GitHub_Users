@@ -8,8 +8,8 @@ import androidx.room.Query
 
 @Dao
 interface RecyclerItemDao {
-    @Query("SELECT * FROM RecyclerItemData ORDER BY name COLLATE NOCASE ASC")
-    fun allCheesesByName(): PagingSource<Int, RecyclerItemData>
+    @Query("SELECT * FROM recycler_db")
+    fun allDataByName(): PagingSource<Int, RecyclerItemData>
 
     @Insert
     fun insert(data: List<RecyclerItemData>)

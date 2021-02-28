@@ -26,5 +26,4 @@
         tools:layout="@layout/fragment_view_pager">
 
     </fragment>
-
 </navigation>

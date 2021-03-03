@@ -3,40 +3,27 @@ package com.example.test.data
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.room.*
 import android.content.Context
-import androidx.databinding.adapters.Converters
 import com.example.test.utilities.DATABASE_NAME
 
-@Database(entities = [RecyclerItemData::class], version = 1, exportSchema = false)
-abstract class RecyclerItemDb : RoomDatabase() {
-    abstract fun recyclerDao(): RecyclerItemDao
+@Database(entities = [UsersData::class], version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun getUsersDao(): UsersDao
 
     companion object {
         @Volatile
-        private var instance: RecyclerItemDb? = null
+        private var instance: AppDatabase? = null
 
-        fun get(context: Context): RecyclerItemDb {
+        fun getDatabase(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
-                instance ?: buildDatabase(context).also { instance = it }
-            }
-        }
-
-        private fun buildDatabase(context: Context): RecyclerItemDb {
-            return Room.databaseBuilder(context, RecyclerItemDb::class.java, DATABASE_NAME)
-                .addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        fillInDb(context.applicationContext)
-                    }
-                }
-                )
-                .build()
-        }
-
-        private fun fillInDb(context: Context) {
-            // inserts in Room are executed on the current thread, so we insert in the background
-            ioThread {
-                get(context).recyclerDao().insert(
-                    CHEESE_DATA.map { RecyclerItemData(id = 0, name = it) })
+                instance ?: Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                    .addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            ioThread {
+                                getDatabase(context).getUsersDao().insert(
+                                    CHEESE_DATA.map { UsersData(userId = 0, name = it) })
+                            }
+                        }
+                    }).build().also { instance = it }
             }
         }
     }

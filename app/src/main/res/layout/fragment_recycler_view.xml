@@ -12,9 +12,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/card_side_margin"
-            android:paddingTop="@dimen/gallery_header_margin"
             android:paddingEnd="@dimen/card_side_margin"
-            app:layoutManager="LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="@integer/grid_columns"
+            tools:context="com.example.test.MainActivity"
             tools:listitem="@layout/recyclerview_item" />
 
     </FrameLayout>

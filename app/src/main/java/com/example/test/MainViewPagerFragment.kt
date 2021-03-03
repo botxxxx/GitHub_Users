@@ -9,7 +9,6 @@ import com.example.test.adapters.MainViewPagerAdapter
 import com.example.test.databinding.FragmentViewPagerBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainViewPagerFragment : Fragment() {
 
     override fun onCreateView(

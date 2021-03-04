@@ -3,17 +3,17 @@ package com.example.test.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.data.UsersData
 import com.example.test.databinding.RecyclerviewItemBinding
-import com.example.test.viewmodels.UserListViewModel
 
-class UsersAdapter : ListAdapter<UsersData, RecyclerView.ViewHolder>(RecyclerDiffCallback()) {
+class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(RecyclerDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
             RecyclerviewItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -23,21 +23,18 @@ class UsersAdapter : ListAdapter<UsersData, RecyclerView.ViewHolder>(RecyclerDif
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = getItem(position)
-        (holder as UserViewHolder).bind(user)
+        holder.bind(user)
     }
 
     class UserViewHolder(
         private val binding: RecyclerviewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-//        init {
-//            binding.setClickListener { view ->
-//
-//            }
-//        }
+        var data: UsersData? = null
 
-        fun bind(item: UsersData) {
+        fun bind(item: UsersData?) {
+            this.data = item
             binding.apply {
                 user = item
                 executePendingBindings()

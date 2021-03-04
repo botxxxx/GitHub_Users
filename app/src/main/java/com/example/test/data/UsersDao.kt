@@ -1,5 +1,6 @@
 package com.example.test.data
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface UsersDao {
     @Query("SELECT * FROM users ORDER BY name COLLATE NOCASE ASC")
-    fun getUsers(): Flow<List<UsersData>>
+    fun getSource(): PagingSource<Int, UsersData>
 
     @Query("SELECT * FROM users WHERE id = :userId")
     fun getUser(userId: Long): Flow<UsersData>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.*
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -30,12 +31,15 @@ class UserListFragment : Fragment() {
         context ?: return binding.root
         binding.recyclerList.adapter = adapter
 
-        subscribeUi(binding.root.context)
+        subscribeUi()
         initSwipeToDelete()
+        initAddButtonListener()
+
+
         return binding.root
     }
 
-    private fun subscribeUi(app: Context) {
+    private fun subscribeUi() {
         lifecycleScope.launch {
             viewModel.users.collectLatest {
                 adapter.submitData(it)
@@ -57,10 +61,41 @@ class UserListFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 (viewHolder as UsersAdapter.UserViewHolder).data?.let {
-                    viewModel.remove(binding.root.context, it)
+                    viewModel.remove(it)
                     Log.d("com.example.kotlin", it.name)
                 }
             }
         }).attachToRecyclerView(binding.recyclerList)
+    }
+
+    private fun addUser() {
+        val newCheese = binding.inputText.text.trim()
+        if (newCheese.isNotEmpty()) {
+            viewModel.insert(newCheese.toString())
+            binding.inputText.setText("")
+        }
+    }
+
+    private fun initAddButtonListener() {
+        binding.addButton.setOnClickListener {
+            addUser()
+        }
+
+        // when the user taps the "Done" button in the on screen keyboard, save the item.
+        binding.inputText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                addUser()
+                return@setOnEditorActionListener true
+            }
+            false
+        }
+        // When the user clicks on the button, or presses enter, save the item.
+        binding.inputText.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                addUser()
+                return@setOnKeyListener true
+            }
+            false
+        }
     }
 }

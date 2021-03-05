@@ -1,20 +1,31 @@
 package com.example.test.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.*
 import com.example.test.data.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject internal constructor(
-    usersRepository: UsersRepository
+    private val usersRepository: UsersRepository
 ) : ViewModel() {
     //    val users: LiveData<List<UsersData>> = usersRepository.getUsers().asLiveData()
     val users = usersRepository.getPagingData
 
-    fun remove(app: Context, user: UsersData) = ioThread{
-        AppDatabase.getDatabase(app).getUsersDao().delete(user)
+    fun insert(user: String) {
+        viewModelScope.launch {
+            usersRepository.insert(user)
+        }
     }
 
+    fun remove(user: UsersData) {
+        viewModelScope.launch {
+            usersRepository.remove(user)
+        }
+    }
 }

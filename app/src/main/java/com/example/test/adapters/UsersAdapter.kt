@@ -2,12 +2,9 @@ package com.example.test.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.test.R
 import com.example.test.data.UsersData
 import com.example.test.databinding.RecyclerviewItemBinding
 

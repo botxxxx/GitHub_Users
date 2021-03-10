@@ -1,8 +1,8 @@
 package com.example.test.data.di
 
 import android.content.Context
-import com.example.test.data.AppDatabase
-import com.example.test.data.UsersDao
+import com.example.test.data.users.AppDatabase
+import com.example.test.data.users.UsersDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

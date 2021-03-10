@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.test.data.UsersData
-import com.example.test.databinding.RecyclerviewItemBinding
+import com.example.test.data.users.UsersData
+import com.example.test.databinding.ListItemUserBinding
 
-class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(RecyclerDiffCallback()) {
+class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
-            RecyclerviewItemBinding.inflate(
+            ListItemUserBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -26,21 +26,21 @@ class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(R
     }
 
     class UserViewHolder(
-        private val binding: RecyclerviewItemBinding
+        private val binding: ListItemUserBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        var data: UsersData? = null
+        var temp: UsersData? = null
 
         fun bind(item: UsersData?) {
-            this.data = item
+            this.temp = item
             binding.apply {
-                user = item
+                data = item
                 executePendingBindings()
             }
         }
     }
 }
 
-private class RecyclerDiffCallback : DiffUtil.ItemCallback<UsersData>() {
+private class UserDiffCallback : DiffUtil.ItemCallback<UsersData>() {
     override fun areItemsTheSame(oldItem: UsersData, newItem: UsersData): Boolean {
         return oldItem.userId == newItem.userId
     }

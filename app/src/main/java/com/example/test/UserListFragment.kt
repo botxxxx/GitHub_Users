@@ -1,6 +1,5 @@
 package com.example.test
 
-import android.content.Context
 import android.os.*
 import android.util.Log
 import android.view.*
@@ -10,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.adapters.*
-import com.example.test.databinding.FragmentRecyclerViewBinding
+import com.example.test.databinding.FragmentUserViewBinding
 import com.example.test.viewmodels.*
 import dagger.hilt.android.*
 import kotlinx.coroutines.flow.collectLatest
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
-    private lateinit var binding: FragmentRecyclerViewBinding
+    private lateinit var binding: FragmentUserViewBinding
     private val adapter = UsersAdapter()
     private val viewModel: UserListViewModel by viewModels()
 
@@ -27,9 +26,9 @@ class UserListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
+        binding = FragmentUserViewBinding.inflate(inflater, container, false)
         context ?: return binding.root
-        binding.recyclerList.adapter = adapter
+        binding.userList.adapter = adapter
 
         subscribeUi()
         initSwipeToDelete()
@@ -60,12 +59,12 @@ class UserListFragment : Fragment() {
             ): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                (viewHolder as UsersAdapter.UserViewHolder).data?.let {
+                (viewHolder as UsersAdapter.UserViewHolder).temp?.let {
                     viewModel.remove(it)
                     Log.d("com.example.kotlin", it.name)
                 }
             }
-        }).attachToRecyclerView(binding.recyclerList)
+        }).attachToRecyclerView(binding.userList)
     }
 
     private fun addUser() {
@@ -73,6 +72,7 @@ class UserListFragment : Fragment() {
         if (newCheese.isNotEmpty()) {
             viewModel.insert(newCheese.toString())
             binding.inputText.setText("")
+//            binding.recyclerList.scrollToPosition(0)
         }
     }
 

@@ -1,3 +1,4 @@
 package com.example.test.utilities
 
-const val DATABASE_NAME = "userDatabase"
+const val USER_DB = "user_db"
+const val DRAMA_DB = "drama_db"

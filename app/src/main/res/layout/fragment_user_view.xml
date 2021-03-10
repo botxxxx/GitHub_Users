@@ -34,7 +34,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_list"
+            android:id="@+id/user_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/card_side_margin"
@@ -42,6 +42,6 @@
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/grid_columns"
             tools:context="com.example.test.MainActivity"
-            tools:listitem="@layout/recyclerview_item" />
+            tools:listitem="@layout/list_item_user" />
     </LinearLayout>
 </layout>

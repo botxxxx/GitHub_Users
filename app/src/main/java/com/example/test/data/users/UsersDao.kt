@@ -1,4 +1,4 @@
-package com.example.test.data
+package com.example.test.data.users
 
 import androidx.paging.PagingSource
 import androidx.room.*

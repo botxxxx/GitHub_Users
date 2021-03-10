@@ -2,6 +2,7 @@ package com.example.test.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.test.DramaListFragment
 import com.example.test.UserListFragment
 
 const val PAGE_0 = 0
@@ -13,8 +14,8 @@ class MainViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
-        PAGE_0 to { UserListFragment() }
-//        PAGE_1 to { PlantListFragment() }
+        PAGE_0 to { UserListFragment() },
+        PAGE_1 to { DramaListFragment() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size

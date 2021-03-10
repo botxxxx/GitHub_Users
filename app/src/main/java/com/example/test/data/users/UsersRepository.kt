@@ -1,12 +1,7 @@
-package com.example.test.data
+package com.example.test.data.users
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.toList
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,7 +10,7 @@ class UsersRepository @Inject constructor(
     private val dao: UsersDao
 ) {
 
-    val getPagingData = Pager(
+    val getUserPagingData = Pager(
         config = PagingConfig(
             enablePlaceholders = false,
             pageSize = 60,

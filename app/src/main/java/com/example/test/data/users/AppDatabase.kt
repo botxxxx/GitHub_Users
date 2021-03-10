@@ -1,9 +1,10 @@
-package com.example.test.data
+package com.example.test.data.users
 
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.room.*
 import android.content.Context
-import com.example.test.utilities.DATABASE_NAME
+import com.example.test.data.ioThread
+import com.example.test.utilities.USER_DB
 
 @Database(entities = [UsersData::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -15,7 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
-                instance ?: Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                instance ?: Room.databaseBuilder(context, AppDatabase::class.java, USER_DB)
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             ioThread {

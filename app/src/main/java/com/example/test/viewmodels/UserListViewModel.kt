@@ -1,12 +1,9 @@
 package com.example.test.viewmodels
 
 import androidx.lifecycle.*
-import com.example.test.data.*
+import com.example.test.data.users.UsersData
+import com.example.test.data.users.UsersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +12,7 @@ class UserListViewModel @Inject internal constructor(
     private val usersRepository: UsersRepository
 ) : ViewModel() {
     //    val users: LiveData<List<UsersData>> = usersRepository.getUsers().asLiveData()
-    val users = usersRepository.getPagingData
+    val users = usersRepository.getUserPagingData
 
     fun insert(user: String) {
         viewModelScope.launch {

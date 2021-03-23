@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/close_b_24px.xml" value="0.17135416666666667" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/github_b_24px.xml" value="0.1" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/github_w_24px.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/link_b_24px.xml" value="0.17135416666666667" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/location_b_24px.xml" value="0.17135416666666667" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/person_b_24px.xml" value="0.17135416666666667" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_blue.xml" value="0.10364583333333334" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_gone.xml" value="0.1625" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_white.xml" value="0.1" />
-        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_user_view.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_detail_view.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_user_view.xml" value="0.2" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/list_item_user.xml" value="0.1" />
       </map>
     </option>

@@ -1,5 +1,6 @@
 package com.example.test.api
 
+import com.example.test.data.details.DetailData
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -21,6 +22,11 @@ interface ApiService {
         @Query("q") q: String = "followers:>10000",
         @Query("sort") sort: String = "contributions"
     ): ApiResponse
+
+    @GET("users/@{login}")
+    suspend fun getDetails(
+        @Path("login") login: String
+    ): DetailData
 
     companion object {
         private const val BASE_URL = "https://api.github.com/"

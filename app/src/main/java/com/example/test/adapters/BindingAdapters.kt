@@ -1,29 +1,28 @@
 package com.example.test.adapters
 
-import android.text.method.LinkMovementMethod
+import android.app.AlertDialog
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.text.HtmlCompat
-import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.test.R
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         Glide.with(view.context)
             .load(imageUrl)
-            .transition(DrawableTransitionOptions.withCrossFade())
+            .centerCrop()
+            .placeholder(R.drawable.github_b_24px)
             .into(view)
     }
 }
 
 @BindingAdapter("isAdmin")
-fun bindIsAdmin(view: Button, isGone: Boolean?) {
+fun bindIsAdmin(view: TextView, isGone: Boolean?) {
     if (isGone == null || !isGone) {
         view.visibility = View.GONE
     } else {
@@ -31,12 +30,15 @@ fun bindIsAdmin(view: Button, isGone: Boolean?) {
     }
 }
 
-@BindingAdapter("renderHtml")
-fun bindRenderHtml(view: TextView, description: String?) {
-    if (description != null) {
-        view.text = HtmlCompat.fromHtml(description, FROM_HTML_MODE_COMPACT)
-        view.movementMethod = LinkMovementMethod.getInstance()
-    } else {
-        view.text = ""
+@BindingAdapter("detailsFromUrl")
+fun bindDetailsFromUrl(view: RelativeLayout, Url: String?) {
+    if (!Url.isNullOrEmpty()) {
+        val dialogView: View =
+            LayoutInflater.from(view.context).inflate(R.layout.fragment_detail_view, null)
+        val dialog = AlertDialog.Builder(view.context, R.style.Theme_AppCompat_NoActionBar)
+            .setView(dialogView).setCancelable(true).create()
+        dialogView.findViewById<View>(R.id.close_button).setOnClickListener {
+            dialog.dismiss()
+        }
     }
 }

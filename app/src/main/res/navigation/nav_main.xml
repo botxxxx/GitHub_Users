@@ -2,12 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/view_pager_fragment">
+    app:startDestination="@id/view_user_fragment">
 
     <fragment
-        android:id="@+id/view_pager_fragment"
-        android:name="com.example.test.MainViewPagerFragment"
-        tools:layout="@layout/fragment_view_pager">
+        android:id="@+id/view_user_fragment"
+        android:name="com.example.test.UserListFragment"
+        tools:layout="@layout/fragment_user_view">
+        <action
+            android:id="@+id/action_view_user_fragment_to_view_detail_fragment"
+            app:destination="@id/view_detail_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/view_detail_fragment"
+        android:name="com.example.test.UserDetailFragment"
+        tools:layout="@layout/fragment_detail_view">
+        <argument
+            android:name="login"
+            app:argType="string" />
     </fragment>
 </navigation>

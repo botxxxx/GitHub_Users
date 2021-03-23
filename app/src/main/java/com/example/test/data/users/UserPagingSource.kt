@@ -8,9 +8,9 @@ private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 
 class UsersPagingSource(
     private val service: ApiService
-) : PagingSource<Int, UsersData>() {
+) : PagingSource<Int, UserData>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UsersData> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserData> {
         val page = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
         return try {
             val response = service.getUsers(page = page)

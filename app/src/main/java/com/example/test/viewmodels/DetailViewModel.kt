@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class UserListViewModel @Inject constructor(
+class DetailViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 

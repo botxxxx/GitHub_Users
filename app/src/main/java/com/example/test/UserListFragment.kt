@@ -1,13 +1,9 @@
 package com.example.test
 
 import android.os.*
-import android.util.Log
 import android.view.*
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.test.adapters.*
 import com.example.test.databinding.FragmentUserViewBinding
 import com.example.test.viewmodels.*
@@ -17,7 +13,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UserListFragment : Fragment() {
+class UserListFragment : Fragment(){
     private lateinit var binding: FragmentUserViewBinding
     private var searchJob: Job? = null
     private val adapter = UsersAdapter()

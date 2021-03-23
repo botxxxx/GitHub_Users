@@ -6,13 +6,18 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="user"
-            type="com.example.test.data.users.UsersData" />
+            type="com.example.test.data.users.UserData" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{clickListener}"
         android:orientation="vertical"
         android:padding="15dp"
         app:cardUseCompatPadding="true">
@@ -22,6 +27,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
             android:padding="10dp"
+            app:detailsFromUrl="@{user.login}"
             tools:ignore="HardcodedText">
 
             <com.example.test.ui.CircleImageView
@@ -29,8 +35,8 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="8dp"
-                app:imageFromUrl="@{user.avatar_url}"
-                android:src="@drawable/github_b_24px" />
+                android:src="@drawable/github_b_24px"
+                app:imageFromUrl="@{user.avatar_url}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,29 +54,27 @@
                     android:text="@{user.login}"
                     android:textSize="20sp" />
 
-                <Button
+                <TextView
                     android:id="@+id/site_admin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_blue"
                     android:focusable="false"
-                    android:paddingTop="-10dp"
-                    android:paddingBottom="-10dp"
                     android:text="staff"
-                    app:isAdmin="@{user.site_admin}"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:isAdmin="@{user.site_admin}" />
 
             </LinearLayout>
 
-
             <TextView
-                android:id="@+id/avatar_count"
+                android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:text="@{user.avatar_count}"
                 android:padding="5dp"
                 android:textSize="20sp"
                 tools:ignore="RelativeOverlap" />

@@ -10,6 +10,6 @@
     <color name="gone">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="def_white">@color/white</color>
-    <color name="def_black">@color/black</color>
+    <color name="def_white">@color/black</color>
+    <color name="def_black">@color/white</color>
 </resources>

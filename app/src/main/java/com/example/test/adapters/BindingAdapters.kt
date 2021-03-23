@@ -1,6 +1,8 @@
 package com.example.test.adapters
 
 import android.text.method.LinkMovementMethod
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
@@ -20,12 +22,12 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     }
 }
 
-@BindingAdapter("isFabGone")
-fun bindIsFabGone(view: FloatingActionButton, isGone: Boolean?) {
-    if (isGone == null || isGone) {
-        view.hide()
+@BindingAdapter("isAdmin")
+fun bindIsAdmin(view: Button, isGone: Boolean?) {
+    if (isGone == null || !isGone) {
+        view.visibility = View.GONE
     } else {
-        view.show()
+        view.visibility = View.VISIBLE
     }
 }
 

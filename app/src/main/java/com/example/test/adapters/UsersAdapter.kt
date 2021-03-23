@@ -33,7 +33,7 @@ class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(U
         fun bind(item: UsersData?) {
             this.temp = item
             binding.apply {
-                data = item
+                user = item
                 executePendingBindings()
             }
         }
@@ -42,7 +42,7 @@ class UsersAdapter : PagingDataAdapter<UsersData, UsersAdapter.UserViewHolder>(U
 
 private class UserDiffCallback : DiffUtil.ItemCallback<UsersData>() {
     override fun areItemsTheSame(oldItem: UsersData, newItem: UsersData): Boolean {
-        return oldItem.userId == newItem.userId
+        return oldItem.login == newItem.login
     }
 
     override fun areContentsTheSame(oldItem: UsersData, newItem: UsersData): Boolean {

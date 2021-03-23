@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">kotlin test</string>
-    <string name="add_user">user name</string>
-    <string name="add">add</string>
 </resources>

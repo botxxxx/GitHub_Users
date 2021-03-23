@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.test.adapters.MainViewPagerAdapter
 import com.example.test.databinding.FragmentViewPagerBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 class MainViewPagerFragment : Fragment() {
 

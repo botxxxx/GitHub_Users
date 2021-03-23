@@ -11,28 +11,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
+            android:layout_margin="16dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/inputText"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/User"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/add_user"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:maxLines="1" />
-
-            <Button
-                android:id="@+id/addButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/add" />
+                android:textSize="30sp"
+                android:text="Github Users" />
 
         </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_list"
             android:layout_width="match_parent"

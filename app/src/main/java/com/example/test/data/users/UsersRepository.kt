@@ -2,31 +2,51 @@ package com.example.test.data.users
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.example.test.api.ApiService
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class UsersRepository @Inject constructor(
-    private val dao: UsersDao
+    private val service: ApiService
 ) {
 
-    val getUserPagingData = Pager(
-        config = PagingConfig(
-            enablePlaceholders = false,
-            pageSize = 60,
-            maxSize = 200
-        )
-    ) {
-        dao.getSource()
-    }.flow
-
-    fun getUser() = dao.getUser()
-
-    suspend fun insert(user: String) {
-        dao.insert(UsersData(userId = 0, name = user))
+    fun getSearchUser(): Flow<PagingData<UsersData>> {
+        return Pager(
+            config = PagingConfig(
+                enablePlaceholders = false,
+                pageSize = 20
+            ),
+            pagingSourceFactory = { UsersPagingSource(service) }
+        ).flow
     }
 
-    suspend fun remove(user: UsersData) {
-        dao.delete(user)
-    }
+//    val getSearchUser = Pager(
+//        config = PagingConfig(
+//            enablePlaceholders = false,
+//            pageSize = 20,
+//            maxSize = 100
+//        ),
+//        pagingSourceFactory = { UsersPagingSource(service) }
+//    ).flow
+
+//    val getDatabaseUser = Pager(
+//        config = PagingConfig(
+//            enablePlaceholders = false,
+//            pageSize = 20,
+//            maxSize = 100
+//        )
+//    ) {
+//        dao.getSource()
+//    }.flow
+
+//    fun getUser() = dao.getUser()
+
+//    suspend fun insert(user: String) {
+//        dao.insert(UsersData(id = 0, login = user))
+//    }
+//
+//    suspend fun remove(user: UsersData) {
+//        dao.delete(user)
+//    }
 }

@@ -1,11 +1,12 @@
-Kotlin_test
+GitHub_Users
 =================
+Create an Android app to display github users list and user information
+
 This sample showcases the following Architecture Components:
 
 * [Room](https://developer.android.com/topic/libraries/architecture/room.html)
 * [RecyclerView](https://developer.android.com/jetpack/androidx/releases/recyclerview.html)
 * [ViewModels](https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html)
-* [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2.html)
 * [Dagger](https://developer.android.com/training/dependency-injection/dagger-basics.html)
 * [Navigation](https://developer.android.com/guide/navigation.html)
 
@@ -23,14 +24,14 @@ Libraries Used
   * [Lifecycles][12] - Create a UI that automatically responds to lifecycle events.
   * [LiveData][13] - Build data objects that notify views when the underlying database changes.
   * [Navigation][14] - Handle everything needed for in-app navigation.
-  * [Room][16] - Access your app's SQLite database with in-app objects and compile-time checks.
   * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
      asynchronous tasks for optimal execution.
 * [UI][30] - Details on why and how to use UI Components in your apps - together or separate
-  * [Animations & Transitions][31]*(not yet) - Move widgets and transition between screens.
+  * [Animations & Transitions][31] - Move widgets and transition between screens.
   * [Fragment][34] - A basic unit of composable UI.
   * [Layout][35] - Lay out widgets using different algorithms.
 * Third party and miscellaneous libraries
+  * [Glide][90] for image loading
   * [Hilt][92]: for [dependency injection][93]
   * [Kotlin Coroutines][91] for managing background threads with simplified code and reducing needs for callbacks
 

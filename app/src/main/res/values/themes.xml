@@ -2,6 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.Test" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:textColor">@color/black</item>
+        <item name="colorPrimaryDark">@color/white</item>
+    </style>
+    <style name="Theme.Test.Bar" parent="Theme.Test">
+        <item name="colorPrimary">@color/def_white</item>
     </style>
     <style name="Theme.Button" parent="Theme.MaterialComponents.DayNight">
         <item name="android:background">@drawable/rounded_blue</item>

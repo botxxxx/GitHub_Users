@@ -1,16 +1,13 @@
 package com.example.test.adapters
 
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.*
+import android.view.*
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.example.test.UserListFragmentDirections
-import com.example.test.data.users.UserData
-import com.example.test.databinding.ListItemUserBinding
+import androidx.recyclerview.widget.*
+import com.example.test.*
+import com.example.test.data.users.*
+import com.example.test.databinding.*
 
 class UsersAdapter : PagingDataAdapter<UserData, UsersAdapter.UserViewHolder>(UserDiffCallback()) {
 
@@ -36,7 +33,7 @@ class UsersAdapter : PagingDataAdapter<UserData, UsersAdapter.UserViewHolder>(Us
             binding.setClickListener { view ->
                 binding.user?.let { item ->
                     Log.d("com.example", "name:" + item.login)
-                    navigateToPlant(item.login, view)
+                    navigateToDetail(item.login, view)
                 }
             }
         }
@@ -51,9 +48,9 @@ class UsersAdapter : PagingDataAdapter<UserData, UsersAdapter.UserViewHolder>(Us
             }
         }
 
-        private fun navigateToPlant(plantId: String, view: View) {
+        private fun navigateToDetail(login: String, view: View) {
             val direction = UserListFragmentDirections
-                .actionViewUserFragmentToViewDetailFragment(plantId)
+                .actionUserToDetail(login)
             view.findNavController().navigate(direction)
         }
     }

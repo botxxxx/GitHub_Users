@@ -2,15 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/view_user_fragment">
+    app:startDestination="@id/user_fragment">
 
     <fragment
-        android:id="@+id/view_user_fragment"
+        android:id="@+id/user_fragment"
         android:name="com.example.test.UserListFragment"
         tools:layout="@layout/fragment_user_view">
         <action
-            android:id="@+id/action_view_user_fragment_to_view_detail_fragment"
-            app:destination="@id/view_detail_fragment"
+            android:id="@+id/action_user_to_detail"
+            app:destination="@id/detail_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -18,7 +18,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/view_detail_fragment"
+        android:id="@+id/detail_fragment"
         android:name="com.example.test.UserDetailFragment"
         tools:layout="@layout/fragment_detail_view">
         <argument

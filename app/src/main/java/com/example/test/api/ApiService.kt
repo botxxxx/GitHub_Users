@@ -6,9 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
@@ -21,9 +19,9 @@ interface ApiService {
         @Query("per_page") perPage: Int = 20,
         @Query("q") q: String = "followers:>10000",
         @Query("sort") sort: String = "contributions"
-    ): ApiResponse
+    ): UserListResponse
 
-    @GET("users/@{login}")
+    @GET("users/{login}")
     suspend fun getDetails(
         @Path("login") login: String
     ): DetailData

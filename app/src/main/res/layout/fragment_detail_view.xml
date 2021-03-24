@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
 
         <variable
             name="detail"
@@ -37,14 +41,15 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:paddingTop="15dp"
-                    android:src="@drawable/github_b_24px" />
+                    app:imageFromUrl="@{detail.avatar_url}" />
 
                 <ImageView
                     android:id="@+id/close_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentTop="true"
-                    android:src="@drawable/close_b_24px"  />
+                    android:onClick="@{clickListener}"
+                    android:src="@drawable/close_b_24px" />
             </RelativeLayout>
 
             <LinearLayout
@@ -62,7 +67,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:singleLine="true"
-                    android:text="Chris Wanstrath"
+                    android:text="@{detail.name}"
                     android:textAlignment="center"
                     android:textSize="25sp" />
 
@@ -73,7 +78,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:singleLine="true"
-                    android:text="bio"
+                    android:text="@{detail.bio}"
                     android:textAlignment="center"
                     android:textSize="25sp" />
             </LinearLayout>
@@ -113,7 +118,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:text="@{detail.login}"
                         android:textSize="20sp" />
 
                     <TextView
@@ -157,10 +162,8 @@
                         android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Taiwan"
+                        android:text="@{detail.location}"
                         android:textSize="20sp" />
-
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -190,8 +193,8 @@
                         android:id="@+id/blog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="http://github.com/botxxxx"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        app:renderHtml="@{detail.blog}" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

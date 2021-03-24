@@ -1,11 +1,10 @@
 package com.example.test.adapters
 
-import android.app.AlertDialog
-import android.view.LayoutInflater
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.test.R
@@ -30,15 +29,16 @@ fun bindIsAdmin(view: TextView, isGone: Boolean?) {
     }
 }
 
-@BindingAdapter("detailsFromUrl")
-fun bindDetailsFromUrl(view: RelativeLayout, Url: String?) {
-    if (!Url.isNullOrEmpty()) {
-        val dialogView: View =
-            LayoutInflater.from(view.context).inflate(R.layout.fragment_detail_view, null)
-        val dialog = AlertDialog.Builder(view.context, R.style.Theme_AppCompat_NoActionBar)
-            .setView(dialogView).setCancelable(true).create()
-        dialogView.findViewById<View>(R.id.close_button).setOnClickListener {
-            dialog.dismiss()
-        }
+@BindingAdapter("renderHtml")
+fun bindRenderHtml(view: TextView, description: String?) {
+    if (description != null) {
+        view.text = HtmlCompat.fromHtml(description, HtmlCompat.FROM_HTML_MODE_COMPACT)
+        view.movementMethod = LinkMovementMethod.getInstance()
+        view.autoLinkMask = Linkify.ALL
+        view.setOnClickListener({
+
+        })
+    } else {
+        view.text = ""
     }
 }

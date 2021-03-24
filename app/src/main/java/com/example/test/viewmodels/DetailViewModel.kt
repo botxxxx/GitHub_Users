@@ -1,20 +1,17 @@
 package com.example.test.viewmodels
 
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.example.test.data.users.UserData
-import com.example.test.data.users.UserRepository
+import com.example.test.data.details.DetailData
+import com.example.test.data.details.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val detailRepository: DetailRepository
 ) : ViewModel() {
 
-    fun getResult(): Flow<PagingData<UserData>> {
-        return userRepository. getSearchUser().cachedIn(viewModelScope)
+    suspend fun getResult(login: String): DetailData {
+        return detailRepository.getSearchUser(login)
     }
 }

@@ -9,5 +9,4 @@ data class DetailData(
     val site_admin: Boolean,
     val location: String? = null,
     val blog: String? = null
-) {
-}
+)

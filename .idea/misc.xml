@@ -12,9 +12,11 @@
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_blue.xml" value="0.10364583333333334" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_gone.xml" value="0.1625" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/drawable/rounded_white.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_detail_view.xml" value="0.1" />
-        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_user_view.xml" value="0.2" />
-        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/list_item_user.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_user_view.xml" value="0.10648148148148148" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
+        <entry key="..\:/ANDROID/Kotlin_test/app/src/main/res/layout/list_item_user.xml" value="0.16" />
       </map>
     </option>
   </component>

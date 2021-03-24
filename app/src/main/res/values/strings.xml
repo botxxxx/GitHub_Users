@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">kotlin test</string>
+    <string name="app_name">Github Users</string>
+    <string name="title">Github Users</string>
 </resources>

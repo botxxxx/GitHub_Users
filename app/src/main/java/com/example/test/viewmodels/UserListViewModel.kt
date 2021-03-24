@@ -15,6 +15,6 @@ class UserListViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getResult(): Flow<PagingData<UserData>> {
-        return userRepository. getSearchUser().cachedIn(viewModelScope)
+        return userRepository.getSearchUser().cachedIn(viewModelScope)
     }
 }

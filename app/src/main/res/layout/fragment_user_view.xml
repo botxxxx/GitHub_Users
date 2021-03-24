@@ -3,35 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:theme="@style/Theme.Test.Bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal">
+            android:fitsSystemWindows="true">
 
-            <TextView
-                android:id="@+id/User"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:text="Github Users" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll"
+                app:title="@string/app_name" />
 
-        </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:paddingStart="@dimen/card_side_margin"
+            android:paddingTop="@dimen/gallery_header_margin"
             android:paddingEnd="@dimen/card_side_margin"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/grid_columns"
             tools:context="com.example.test.MainActivity"
             tools:listitem="@layout/list_item_user" />
-    </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

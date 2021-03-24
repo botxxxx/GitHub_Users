@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserListFragment : Fragment(){
+
     private lateinit var binding: FragmentUserViewBinding
     private var searchJob: Job? = null
     private val adapter = UsersAdapter()

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:padding="5dp"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
             android:padding="10dp"
-            app:detailsFromUrl="@{user.login}"
             tools:ignore="HardcodedText">
 
             <com.example.test.ui.CircleImageView

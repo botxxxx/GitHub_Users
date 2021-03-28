@@ -34,15 +34,6 @@
                 android:layout_weight="1"
                 tools:ignore="NestedWeights">
 
-
-                <com.example.test.ui.CircleImageView
-                    android:id="@+id/avatar_url"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:paddingTop="15dp"
-                    app:imageFromUrl="@{detail.avatar_url}" />
-
                 <ImageView
                     android:id="@+id/close_button"
                     android:layout_width="50dp"
@@ -50,6 +41,21 @@
                     android:layout_alignParentTop="true"
                     android:onClick="@{clickListener}"
                     android:src="@drawable/close_b_24px" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <com.example.test.ui.CircleImageView
+                        android:id="@+id/avatar_url"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="25dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/github_b_24px"
+                        app:imageFromUrl="@{detail.avatar_url}" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -62,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -73,7 +79,7 @@
 
                 <TextView
                     android:id="@+id/bio"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -194,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        app:renderHtml="@{detail.blog}" />
+                        app:isHtml="@{detail.blog}" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

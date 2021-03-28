@@ -1,5 +1,7 @@
 package com.example.test.adapters
 
+import android.os.Build
+import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.View
@@ -29,15 +31,12 @@ fun bindIsAdmin(view: TextView, isGone: Boolean?) {
     }
 }
 
-@BindingAdapter("renderHtml")
-fun bindRenderHtml(view: TextView, description: String?) {
+@BindingAdapter("isHtml")
+fun bindIsHtml(view: TextView, description: String?) {
     if (description != null) {
-        view.text = HtmlCompat.fromHtml(description, HtmlCompat.FROM_HTML_MODE_COMPACT)
         view.movementMethod = LinkMovementMethod.getInstance()
-        view.autoLinkMask = Linkify.ALL
-        view.setOnClickListener({
-
-        })
+        view.autoLinkMask = Linkify.WEB_URLS
+        view.text = Html.fromHtml(description, HtmlCompat.FROM_HTML_MODE_COMPACT)
     } else {
         view.text = ""
     }

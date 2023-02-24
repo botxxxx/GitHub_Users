@@ -1,5 +1,7 @@
 GitHub_Users
 =================
+video: https://youtu.be/cq2eSSdJA0o
+
 Create an Android app to display github users list and user information
 
 This sample showcases the following Architecture Components:

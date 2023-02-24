@@ -1,6 +1,7 @@
 package com.example.test.data.users
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "users")
 data class UserData(

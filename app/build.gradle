@@ -6,90 +6,85 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
+static def getVersionCode() { return 1 }
+
+static def getVersionName() { return "0.0.1" + new Date().format('MMddHH') }
+
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion "30.0.3"
-    buildFeatures {
-        dataBinding true
-    }
+    namespace 'com.example.test'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.example.test"
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
+        minSdk 29
+        targetSdk 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 1
-        versionName "1.0"
-        vectorDrawables.useSupportLibrary true
-
+        versionCode getVersionCode()
+        versionName getVersionName()
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "ture"
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
-        // work-runtime-ktx 2.1.0 and above now requires Java 8
-        jvmTarget = "1.8"
-
-        // Enable Coroutines and Flow APIs
-        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
 dependencies {
-    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
-    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
-    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
-    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
-    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
-    implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
-    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
-    implementation "androidx.paging:paging-runtime-ktx:$rootProject.pagingVersion"
-    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
-    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
-    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    implementation "androidx.viewpager2:viewpager2:$rootProject.viewPagerVersion"
-    implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.moshi:moshi-kotlin:1.9.3"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
-    implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+    // base
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.8.0'
+    // kotlin_navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    // lifecycle
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+    // room
+    kapt 'androidx.room:room-compiler:2.5.0'
+    implementation 'androidx.room:room-ktx:2.5.0'
+    implementation 'androidx.room:room-common:2.5.0'
+    implementation 'androidx.room:room-paging:2.5.0'
+    // dagger
+    kapt 'com.google.dagger:hilt-android-compiler:2.45'
+    implementation 'com.google.dagger:hilt-android:2.45'
+    // glide
+    kapt "com.github.bumptech.glide:compiler:4.14.2"
+    implementation "com.github.bumptech.glide:glide:4.14.2"
+    // network
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    // testing
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.45'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
 
-    // Testing dependencies
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
-    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
-    androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
-    androidTestImplementation "com.google.truth:truth:$rootProject.truthVersion"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
-    testImplementation "junit:junit:$rootProject.junitVersion"
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

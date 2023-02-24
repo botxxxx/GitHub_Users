@@ -2,6 +2,7 @@ package com.example.test.data.users
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingSource.LoadResult.Page
+import androidx.paging.PagingState
 import com.example.test.api.ApiService
 
 private const val UNSPLASH_STARTING_PAGE_INDEX = 1
@@ -22,6 +23,12 @@ class UsersPagingSource(
             )
         } catch (exception: Exception) {
             LoadResult.Error(exception)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, UserData>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey
         }
     }
 }

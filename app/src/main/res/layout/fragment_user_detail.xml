@@ -11,7 +11,7 @@
 
         <variable
             name="detail"
-            type="com.example.test.data.details.DetailData" />
+            type="com.example.test.data.details.UserDetail" />
     </data>
 
     <LinearLayout
@@ -54,7 +54,7 @@
                         android:layout_marginTop="25dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/github_b_24px"
-                        app:imageFromUrl="@{detail.avatar_url}" />
+                        app:imageFromUrl="@{detail.avatarUrl}" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -138,7 +138,7 @@
                         android:textAllCaps="true"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
-                        app:isAdmin="@{detail.site_admin}" />
+                        app:isAdmin="@{detail.siteAdmin}" />
                 </LinearLayout>
             </RelativeLayout>
 

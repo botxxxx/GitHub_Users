@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/user_fragment"
         android:name="com.example.test.UserListFragment"
-        tools:layout="@layout/fragment_user_view">
+        tools:layout="@layout/fragment_user_list">
         <action
             android:id="@+id/action_user_to_detail"
             app:destination="@id/detail_fragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/detail_fragment"
         android:name="com.example.test.UserDetailFragment"
-        tools:layout="@layout/fragment_detail_view">
+        tools:layout="@layout/fragment_user_detail">
         <argument
             android:name="login"
             app:argType="string" />

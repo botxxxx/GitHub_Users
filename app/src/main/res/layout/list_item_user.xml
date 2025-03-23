@@ -34,6 +34,7 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="8dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/github_b_24px"
                 app:imageFromUrl="@{user.avatar_url}" />
 

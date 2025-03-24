@@ -52,7 +52,7 @@
                         android:layout_width="300dp"
                         android:layout_height="300dp"
                         android:layout_marginTop="25dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="centerInside"
                         android:src="@drawable/github_b_24px"
                         app:imageFromUrl="@{detail.avatarUrl}" />
                 </RelativeLayout>

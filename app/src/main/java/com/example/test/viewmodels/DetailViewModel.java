@@ -8,7 +8,9 @@ import com.example.test.data.details.UserDetail;
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
-import retrofit2.Call;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @HiltViewModel
 public class DetailViewModel extends ViewModel {
@@ -20,7 +22,9 @@ public class DetailViewModel extends ViewModel {
         this.detailRepository = detailRepository;
     }
 
-    public Call<UserDetail> getResult(String login) {
-        return detailRepository.getSearchUser(login);
+    public Single<UserDetail> getResult(String login) {
+        return detailRepository.getDetail(login)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

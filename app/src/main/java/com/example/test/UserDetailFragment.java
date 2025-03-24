@@ -13,22 +13,22 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.test.data.details.UserDetail;
 import com.example.test.databinding.FragmentUserDetailBinding;
-
-import androidx.navigation.fragment.NavHostFragment;
-
 import com.example.test.model.fragment.ViewBindingFragment;
 import com.example.test.viewmodels.DetailViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class UserDetailFragment extends ViewBindingFragment<FragmentUserDetailBinding> {
 
     private DetailViewModel viewModel;
     private String login;
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,20 +61,21 @@ public class UserDetailFragment extends ViewBindingFragment<FragmentUserDetailBi
     }
 
     private void subscribeUi(String login) {
-        viewModel.getResult(login).enqueue(new Callback<>() {
-            @Override
-            public void onResponse(@NonNull Call<UserDetail> call, @NonNull Response<UserDetail> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    getBinding().setDetail(response.body());
-                } else {
-                    Toast.makeText(requireContext(), "Error fetching user details", Toast.LENGTH_SHORT).show();
-                }
-            }
+        Single<UserDetail> single = viewModel.getResult(login);
+        Disposable disposable = single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userDetail -> getBinding().setDetail(userDetail),
+                        throwable -> {
+                            Toast.makeText(requireContext(), "Error loading user details", Toast.LENGTH_SHORT).show();
+                        }
+                );
+        disposables.add(disposable);
+    }
 
-            @Override
-            public void onFailure(@NonNull Call<UserDetail> call, @NonNull Throwable t) {
-                Toast.makeText(requireContext(), "Error fetching user details", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        disposables.clear();
     }
 }

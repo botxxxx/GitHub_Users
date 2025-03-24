@@ -27,7 +27,7 @@ public interface ApiService {
     );
 
     @GET("users/{login}")
-    Call<UserDetail> getDetails(
+    Single<UserDetail> getUserDetails(
             @Path("login") String login
     );
 

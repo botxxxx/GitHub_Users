@@ -1,24 +1,25 @@
 package com.example.test.data.details;
 
-import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
 
 public class UserDetail {
     private long id;
     private String login;
-    private String avatarUrl;
+    @SerializedName("avatar_url")
+    private String avatar_url;
     private String name;
     private String bio;
-    private boolean siteAdmin;
+    private boolean site_admin;
     private String location;
     private String blog;
 
-    public UserDetail(long id, String login, String avatarUrl, String name, String bio, boolean siteAdmin, String location, String blog) {
+    public UserDetail(long id, String login, String avatar_url, String name, String bio, boolean site_admin, String location, String blog) {
         this.id = id;
         this.login = login;
-        this.avatarUrl = avatarUrl;
+        this.avatar_url = avatar_url;
         this.name = name;
         this.bio = bio;
-        this.siteAdmin = siteAdmin;
+        this.site_admin = site_admin;
         this.location = location;
         this.blog = blog;
     }
@@ -32,7 +33,7 @@ public class UserDetail {
     }
 
     public String getAvatarUrl() {
-        return avatarUrl;
+        return avatar_url;
     }
 
     public String getName() {
@@ -44,7 +45,7 @@ public class UserDetail {
     }
 
     public boolean isSiteAdmin() {
-        return siteAdmin;
+        return site_admin;
     }
 
     public String getLocation() {
@@ -60,10 +61,10 @@ public class UserDetail {
         return "DetailData{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
+                ", avatar_url='" + avatar_url + '\'' +
                 ", name='" + name + '\'' +
                 ", bio='" + bio + '\'' +
-                ", siteAdmin=" + siteAdmin +
+                ", site_admin=" + site_admin +
                 ", location='" + location + '\'' +
                 ", blog='" + blog + '\'' +
                 '}';

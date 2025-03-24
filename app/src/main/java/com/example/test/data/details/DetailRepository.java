@@ -4,7 +4,7 @@ import com.example.test.api.ApiService;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Single;
 
 public class DetailRepository {
 
@@ -15,7 +15,7 @@ public class DetailRepository {
         this.service = service;
     }
 
-    public Call<UserDetail> getSearchUser(String login) {
-        return service.getDetails(login);
+    public Single<UserDetail> getDetail(String login) {
+        return service.getUserDetails(login);
     }
 }

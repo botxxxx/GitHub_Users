@@ -19,8 +19,9 @@ public class BindingAdapters {
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(view.getContext())
                     .load(imageUrl)
-                    .centerCrop()
+                    .circleCrop()
                     .placeholder(R.drawable.github_b_24px)
+                    .error(R.drawable.github_b_24px)
                     .into(view);
         }
     }

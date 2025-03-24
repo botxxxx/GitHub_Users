@@ -1,6 +1,5 @@
 package com.example.test.model.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,33 +32,29 @@ public class UserListAdapter extends PagingDataAdapter<UserData, UserListAdapter
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         UserData item = getItem(position);
         holder.bind(item);
+
+        holder.binding.getRoot().setOnClickListener(view -> {
+            assert item != null;
+            navigateToDetail(item.getLogin(), view);
+        });
+    }
+
+    protected void navigateToDetail(String login, View view) {
+        NavDirections direction = UserListFragmentDirections.actionUserToDetail(login);
+        Navigation.findNavController(view).navigate(direction);
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         private final ListItemUserBinding binding;
-        private UserData temp;
 
         public UserViewHolder(ListItemUserBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-
-            binding.getRoot().setOnClickListener(view -> {
-                if (temp != null) {
-                    Log.d("com.example", "name:" + temp.getLogin());
-                    navigateToDetail(temp.getLogin(), view);
-                }
-            });
         }
 
         public void bind(UserData item) {
-            this.temp = item;
             binding.setUser(item);
             binding.executePendingBindings();
-        }
-
-        private void navigateToDetail(String login, View view) {
-            NavDirections direction = UserListFragmentDirections.actionUserToDetail(login);
-            Navigation.findNavController(view).navigate(direction);
         }
     }
 
@@ -71,10 +66,8 @@ public class UserListAdapter extends PagingDataAdapter<UserData, UserListAdapter
 
         @Override
         public boolean areContentsTheSame(@NonNull UserData oldItem, @NonNull UserData newItem) {
-            // Explicitly compare relevant fields
             return oldItem.getLogin().equals(newItem.getLogin()) &&
                     oldItem.getId() == newItem.getId() &&
-                    // Add other relevant fields here
                     oldItem.getAvatar_url().equals(newItem.getAvatar_url());
         }
     }

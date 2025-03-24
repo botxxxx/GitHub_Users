@@ -8,7 +8,6 @@ import androidx.paging.LoadState;
 import androidx.paging.LoadStateAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test.data.users.UserData;
 import com.example.test.databinding.ListItemUserBinding;
 
 public class UserListLoadStateAdapter extends LoadStateAdapter<UserListLoadStateAdapter.LoadStateViewHolder> {
@@ -27,7 +26,6 @@ public class UserListLoadStateAdapter extends LoadStateAdapter<UserListLoadState
 
     public static class LoadStateViewHolder extends RecyclerView.ViewHolder {
         private final ListItemUserBinding binding;
-        private UserData temp;
 
         LoadStateViewHolder(ListItemUserBinding binding) {
             super(binding.getRoot());

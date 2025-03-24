@@ -1,24 +1,19 @@
 package com.example.test.data.users;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.paging.PagingSource;
 import androidx.paging.PagingState;
+import androidx.paging.rxjava3.RxPagingSource;
 
 import com.example.test.api.ApiService;
 import com.example.test.api.UserListResponse;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.List;
 
-import kotlin.coroutines.Continuation;
-import retrofit2.Call;
-import retrofit2.Response;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class UserPagingSource extends PagingSource<Integer, UserData> {
+public class UserPagingSource extends RxPagingSource<Integer, UserData> {
 
     private static final int UNSPLASH_STARTING_PAGE_INDEX = 1;
 
@@ -36,24 +31,26 @@ public class UserPagingSource extends PagingSource<Integer, UserData> {
 
     @NonNull
     @Override
-    public LoadResult<Integer, UserData> load(@NonNull LoadParams<Integer> loadParams, @NonNull Continuation<? super LoadResult<Integer, UserData>> continuation) {
+    public Single<LoadResult<Integer, UserData>> loadSingle(@NonNull LoadParams<Integer> loadParams) {
         int page = loadParams.getKey() != null ? loadParams.getKey() : UNSPLASH_STARTING_PAGE_INDEX;
         try {
-            Call<UserListResponse> call = service.getUsers(page, 20, "followers:>10000", "contributions");
-            Response<UserListResponse> response = call.execute();
-            if (response.isSuccessful() && response.body() != null) {
-                UserListResponse userResponse = response.body();
-                LoadResult.Page<Integer, UserData> result = new LoadResult.Page<>(
-                        userResponse.getItems(),
-                        page == UNSPLASH_STARTING_PAGE_INDEX ? null : page - 1,
-                        page == userResponse.getTotalCount() ? null : page + 1
-                );
-                return result;
-            } else {
-                return new LoadResult.Error<>(new IOException("Failed to load data"));
-            }
+            Single<UserListResponse> single = service.getUsers(page, 20, "followers:>10000", "contributions");
+            return single.subscribeOn(Schedulers.io())
+                    .map(response -> toLoadResult(response.getItems(), page, response.getTotalCount()))
+                    .onErrorReturn(LoadResult.Error::new);
         } catch (Exception e) {
-            return new LoadResult.Error<>(e);
+            return Single.just(new LoadResult.Error(e));
         }
+    }
+
+    // Method to map UserData to LoadResult object
+    private LoadResult<Integer, UserData> toLoadResult(List<UserData> items, int page, int totalCount) {
+        int perPage = 20;
+        int lastPage = (int) Math.ceil((double) totalCount / perPage);
+        return new LoadResult.Page<>(
+                items,
+                page == UNSPLASH_STARTING_PAGE_INDEX ? null : page - 1,
+                page == lastPage ? null : page + 1
+        );
     }
 }

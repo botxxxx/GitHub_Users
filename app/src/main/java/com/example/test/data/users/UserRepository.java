@@ -1,14 +1,15 @@
 package com.example.test.data.users;
 
-import androidx.lifecycle.LiveData;
 import androidx.paging.Pager;
 import androidx.paging.PagingConfig;
 import androidx.paging.PagingData;
-import androidx.paging.PagingLiveData;
+import androidx.paging.rxjava3.PagingRx;
 
 import com.example.test.api.ApiService;
 
 import javax.inject.Inject;
+
+import io.reactivex.rxjava3.core.Flowable;
 
 public class UserRepository {
 
@@ -19,11 +20,11 @@ public class UserRepository {
         this.service = service;
     }
 
-    public LiveData<PagingData<UserData>> getSearchUser() {
+    public Flowable<PagingData<UserData>> getSearchUser() {
         Pager<Integer, UserData> pager = new Pager<>(
-                new PagingConfig(20, 10,false),
+                new PagingConfig(20, 20,false),
                 () -> new UserPagingSource(service)
         );
-        return PagingLiveData.getLiveData(pager);
+        return PagingRx.getFlowable(pager);
     }
 }

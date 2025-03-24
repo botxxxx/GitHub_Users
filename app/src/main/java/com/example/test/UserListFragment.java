@@ -7,19 +7,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.paging.PagingData;
 
-import com.example.test.api.ApiService;
-import com.example.test.data.users.UserData;
 import com.example.test.databinding.FragmentUserListBinding;
 import com.example.test.model.adapter.UserListAdapter;
+import com.example.test.model.adapter.UserListLoadStateAdapter;
 import com.example.test.model.fragment.ViewBindingFragment;
 import com.example.test.viewmodels.UserListViewModel;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -38,14 +32,15 @@ public class UserListFragment extends ViewBindingFragment<FragmentUserListBindin
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new UserListAdapter();
-        getBinding().userList.setAdapter(adapter);
-
-        subscribeUI();
+        initRecyclerviewAndAdapter();
+        UserListViewModel viewModel = new ViewModelProvider(this).get(UserListViewModel.class);
+        viewModel.userDataFlowable.subscribe(moviePagingData -> adapter.submitData(getLifecycle(), moviePagingData));
     }
 
-    private void subscribeUI() {
-        UserListViewModel viewModel = new ViewModelProvider(this).get(UserListViewModel.class);
-        viewModel.getResult().observe(getViewLifecycleOwner(), pagedData -> adapter.submitData(getLifecycle(), pagedData));
+    private void initRecyclerviewAndAdapter() {
+        adapter = new UserListAdapter();
+        getBinding().userList.setAdapter(
+                adapter.withLoadStateFooter(new UserListLoadStateAdapter())
+        );
     }
 }

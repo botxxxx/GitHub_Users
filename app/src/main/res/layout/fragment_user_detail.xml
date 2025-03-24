@@ -47,7 +47,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center">
 
-                    <com.example.test.ui.CircleImageView
+                    <ImageView
                         android:id="@+id/avatar_url"
                         android:layout_width="300dp"
                         android:layout_height="300dp"

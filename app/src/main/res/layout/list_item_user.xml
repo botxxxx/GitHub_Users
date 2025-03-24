@@ -29,7 +29,7 @@
             android:padding="10dp"
             tools:ignore="HardcodedText">
 
-            <com.example.test.ui.CircleImageView
+            <ImageView
                 android:id="@+id/avatar_url"
                 android:layout_width="65dp"
                 android:layout_height="65dp"

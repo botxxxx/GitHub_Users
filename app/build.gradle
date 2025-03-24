@@ -66,13 +66,17 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:4.14.2"
     implementation "com.github.bumptech.glide:glide:4.14.2"
     // network
+    def paging_version = "3.1.1"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     // testing
-    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.45' //Changed kapt to annotationProcessor
+    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.45'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

@@ -1,5 +1,7 @@
 # GitHub Users App - Code Explanation
 
+demo: https://youtube.com/shorts/DjLhwK-jyO4
+
 ## Introduction
 
 This Android application is designed to demonstrate the retrieval and display of user data from the GitHub API. The app fetches a list of users, presents them in a `RecyclerView`, and allows users to tap on an individual user to view more detailed information. The app is built using modern Android development practices and libraries, including:

@@ -16,8 +16,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class UserPagingSource extends RxPagingSource<Integer, UserData> {
 
     private static final int UNSPLASH_STARTING_PAGE_INDEX = 1;
+    private static final int MAX_USERS = 100;
 
     private final ApiService service;
+    private int totalUsersLoaded = 0;
 
     public UserPagingSource(ApiService service) {
         this.service = service;
@@ -45,12 +47,20 @@ public class UserPagingSource extends RxPagingSource<Integer, UserData> {
 
     // Method to map UserData to LoadResult object
     private LoadResult<Integer, UserData> toLoadResult(List<UserData> items, int page, int totalCount) {
+        // Update the total number of users loaded
+        totalUsersLoaded += items.size();
+        // Limit the totalCount to MAX_USERS
+        int limitedTotalCount = Math.min(totalCount, MAX_USERS);
         int perPage = 20;
-        int lastPage = (int) Math.ceil((double) totalCount / perPage);
+        int lastPage = (int) Math.ceil((double) limitedTotalCount / perPage);
+        Integer nextKey = null;
+        if (totalUsersLoaded < MAX_USERS && page < lastPage) {
+            nextKey = page + 1;
+        }
         return new LoadResult.Page<>(
                 items,
                 page == UNSPLASH_STARTING_PAGE_INDEX ? null : page - 1,
-                page == lastPage ? null : page + 1
+                nextKey
         );
     }
 }

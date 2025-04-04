@@ -1,208 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_background"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:ignore="UselessParent,HardcodedText,ContentDescription,RtlHardcoded">
 
-    <data>
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="userPhoto"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        tools:src="@drawable/github_b_24px" />
 
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener" />
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/close_b_24px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <variable
-            name="detail"
-            type="com.example.test.data.details.DetailData" />
-    </data>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_background"
-        android:orientation="vertical"
-        android:padding="10dp"
-        tools:ignore="UselessParent,HardcodedText,ContentDescription,RtlHardcoded">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="45dp"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+        tools:text="user.name" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_bio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_name"
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        tools:text="user.bio" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
+    <ImageView
+        android:id="@+id/iv_person"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/person_b_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_bio"
+        app:layout_constraintVertical_bias="0.15" />
 
-                <ImageView
-                    android:id="@+id/close_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentTop="true"
-                    android:onClick="@{clickListener}"
-                    android:src="@drawable/close_b_24px" />
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_admin"
+        app:layout_constraintEnd_toEndOf="@id/tv_bio"
+        app:layout_constraintStart_toEndOf="@id/iv_person"
+        app:layout_constraintTop_toTopOf="@id/iv_person"
+        tools:text="user.login" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+    <TextView
+        android:id="@+id/tv_admin"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_blue"
+        android:text="staff"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/iv_person"
+        app:layout_constraintEnd_toEndOf="@id/tv_bio"
+        app:layout_constraintStart_toEndOf="@id/iv_person"
+        tools:visibility="visible" />
 
-                    <com.example.test.ui.CircleImageView
-                        android:id="@+id/avatar_url"
-                        android:layout_width="300dp"
-                        android:layout_height="300dp"
-                        android:layout_marginTop="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/github_b_24px"
-                        app:imageFromUrl="@{detail.avatar_url}" />
-                </RelativeLayout>
-            </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_location"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/location_b_24px"
+        app:layout_constraintStart_toStartOf="@id/iv_person"
+        app:layout_constraintTop_toBottomOf="@id/iv_person" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="vertical"
-                tools:ignore="UseCompoundDrawables">
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_location"
+        app:layout_constraintEnd_toEndOf="@id/tv_bio"
+        app:layout_constraintStart_toEndOf="@id/iv_location"
+        app:layout_constraintTop_toTopOf="@id/iv_location"
+        tools:text="user.location" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:singleLine="true"
-                    android:text="@{detail.name}"
-                    android:textAlignment="center"
-                    android:textSize="25sp" />
+    <ImageView
+        android:id="@+id/iv_link"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/link_b_24px"
+        app:layout_constraintStart_toStartOf="@id/iv_location"
+        app:layout_constraintTop_toBottomOf="@id/iv_location" />
 
-                <TextView
-                    android:id="@+id/bio"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:singleLine="true"
-                    android:text="@{detail.bio}"
-                    android:textAlignment="center"
-                    android:textSize="25sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                tools:ignore="UselessParent">
-
-                <ImageView
-                    android:id="@+id/person_url"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/person_b_24px" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_toRightOf="@+id/person_url"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{detail.login}"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/site_admin"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_blue"
-                        android:focusable="false"
-                        android:text="staff"
-                        android:textAlignment="center"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp"
-                        app:isAdmin="@{detail.site_admin}" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                tools:ignore="UselessParent">
-
-                <ImageView
-                    android:id="@+id/location_url"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/location_b_24px" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_toRightOf="@+id/location_url"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{detail.location}"
-                        android:textSize="20sp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                tools:ignore="UselessParent">
-
-                <ImageView
-                    android:id="@+id/link_url"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/link_b_24px" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_toRightOf="@+id/link_url"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:id="@+id/blog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        app:isHtml="@{detail.blog}" />
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
-</layout>
+    <TextView
+        android:id="@+id/tv_blog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_link"
+        app:layout_constraintEnd_toEndOf="@id/tv_location"
+        app:layout_constraintStart_toEndOf="@id/iv_link"
+        app:layout_constraintTop_toTopOf="@id/iv_link"
+        tools:text="user.blog" />
+</androidx.constraintlayout.widget.ConstraintLayout>

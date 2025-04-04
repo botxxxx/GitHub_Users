@@ -1,4 +1,4 @@
-package com.example.test.data.di
+package com.example.test.di
 
 import android.content.Context
 import com.example.test.data.AppDatabase

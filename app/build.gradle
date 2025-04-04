@@ -23,7 +23,7 @@ android {
         versionName getVersionName()
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "ture"
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
             }
         }
     }
@@ -42,7 +42,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 }
 

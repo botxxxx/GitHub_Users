@@ -7,9 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(
-    private val detailRepository: DetailRepository
-) : ViewModel() {
+class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) : ViewModel() {
+
+    val userDetail = MutableLiveData<DetailData>()
 
     suspend fun getResult(login: String): DetailData {
         return detailRepository.getSearchUser(login)

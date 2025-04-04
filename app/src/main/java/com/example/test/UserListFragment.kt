@@ -13,25 +13,28 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UserListFragment : Fragment(){
+class UserListFragment : Fragment() {
 
-    private lateinit var binding: FragmentUserViewBinding
+    private var binding: FragmentUserViewBinding? = null
     private var searchJob: Job? = null
     private val adapter = UsersAdapter()
     private val viewModel: UserListViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUserViewBinding.inflate(inflater, container, false)
-        context ?: return binding.root
+        return binding!!.root
+    }
 
-        binding.userList.adapter = adapter
+    override fun onDestroyView() {
+        searchJob?.cancel()
+        binding = null
+        super.onDestroyView()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding!!.rvUserList.adapter = adapter
         subscribeUi()
-
-        return binding.root
     }
 
     private fun subscribeUi() {

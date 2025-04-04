@@ -10,9 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class UserListViewModel @Inject constructor(
-    private val userRepository: UserRepository
-) : ViewModel() {
+class UserListViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     fun getResult(): Flow<PagingData<UserData>> {
         return userRepository.getSearchUser().cachedIn(viewModelScope)
